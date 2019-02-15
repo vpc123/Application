@@ -10,7 +10,7 @@
 
 ###### BookInfo官方案例分析
 
-![image\架构](image\架构.png)
+![5c6611ea21451](https://i.loli.net/2019/02/15/5c6611ea21451.png)
 
 - productpage 调用details和reviews渲染页面
 - details包含书本信息
@@ -25,11 +25,9 @@ reviews服务有三个版本:
 
 数据平面：
 
-![image\数据](image\数据.png)
+![5c6611faf1864](https://i.loli.net/2019/02/15/5c6611faf1864.png)
 
 `$kubectl apply -n istio-test -f istio-1.0.0/samples/bookinfo/platform/kube/bookinfo.yaml`
-
-
 
 使用treafik将服务访问放出来。
 
