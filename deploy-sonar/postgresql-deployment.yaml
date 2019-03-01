@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonar-postgresql
+  namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: sonar-postgresql
+    spec:
+      containers:
+      - name: sonarqube
+        image: k8s-deploy/sonar-postgres:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 300m
+            memory: 768Mi
+        env:
+          - name: POSTGRES_USER
+            value: "sonar"
+          - name: POSTGRES_PASSWORD
+            value: "sonar"
+        ports:
+        - containerPort: 5432

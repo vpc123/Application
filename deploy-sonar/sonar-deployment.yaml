@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonar
+  namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: sonar
+    spec:
+      containers:
+      - name: sonarqube
+        image: k8s-deploy/sonarqube:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1024Mi
+#        command:
+#        - /bin/bash
+#        args:
+#        - "./bin/run.sh"
+        env:
+          - name: SONARQUBE_JDBC_URL
+            value: "jdbc:postgresql://sonar-postgresql-service:5432/sonar"
+        ports:
+        - containerPort: 9000
+
